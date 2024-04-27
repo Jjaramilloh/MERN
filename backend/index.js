@@ -32,7 +32,8 @@ app.post('/books', async(request,response) =>{
             publishYear: request.body.publishYear,
         };
 
-        const book = await Book.create(newBook)
+        const book =  new Book(newBook)
+        book.save()        
 
         return response.status(201).send(book)
         
@@ -58,12 +59,6 @@ app.get('/books', async(request,response)=>{
     }
 })
 
-// Book = new Book ({
-//     title:"Hola",
-//     author: "Sheackspear",
-//     publishYear: "1850"
-// })
-// Book.save()
 
 mongoose
 .connect(mongoDBURL)
